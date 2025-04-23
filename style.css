@@ -8,6 +8,12 @@
   box-sizing: border-box;
 }
 
+html, body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 /* Shared intro screen styles */
 .intro-screen {
   position: fixed;
@@ -154,7 +160,7 @@
 
 .cashier-job-wrapper{
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   background-color: yellow;
   background-image: url("./assets/images/grocery-backgr-shelves.jpg");
   background-position: bottom;
