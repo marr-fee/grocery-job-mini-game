@@ -1,0 +1,887 @@
+/* This is the main stylesheet for the Grocery Job Mini-Game */
+/* It defines the layout, colors, and styles for the grocery store interface */
+/* Key sections include the supermarket building, cashier job interface, and job stats */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Shared intro screen styles */
+.intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(145deg, #0e0e0e, #1a1a1a);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  animation: fadeInOut 4s ease-in-out forwards;
+}
+
+#intro-2 {
+  animation-delay: 3.5s;
+}
+
+.intro-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+  animation: pulseGlow 5.5s infinite ease-in-out;
+}
+
+.intro-note {
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 20px;
+  line-height: 1.6;
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+
+/* Fade animation */
+@keyframes fadeInOut {
+  0% { opacity: 0; display: flex;}
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; display: none;}
+}
+
+/* Glow effect */
+@keyframes pulseGlow {
+  0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #333; }
+  50% { text-shadow: 0 0 20px #fff, 0 0 30px #555; }
+}
+
+
+.grocery-store-wrapper{
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.grocery-sm-building{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+.grocery-sm-building img{
+  width: 140%;
+  height: 100vh;
+  object-fit: fill;
+}
+
+.supermarket-name{
+  position: absolute;
+  background-color: #e73e3e;
+  border: 5px solid rgb(209, 189, 73);
+  top: 29%;
+  width: 236px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.supermarket-name p{
+  font-size: 27px;
+  font-weight: 600;
+  color: yellow;
+}
+
+#start-grocery-shift-btn{
+  position: absolute;
+  top: 50%;
+  background-color: yellow;
+  color: red;
+  font-weight: 600;
+  padding: 8px 5px;
+  border-radius: 5px;
+  animation: bounceButton 1s ease-in-out infinite;
+}
+
+#reset-game{
+  position: absolute;
+  top: 50%;
+  background-color: yellow;
+  color: red;
+  font-weight: 600;
+  padding: 8px 5px;
+  border-radius: 5px;
+  animation: bounceButton 1s ease-in-out infinite;
+  visibility: hidden;
+}
+
+@keyframes bounceButton{
+  0%{
+    scale: 1;
+  }
+  50%{
+    scale: 1.1;
+  }
+  100%{
+    scale: 1;
+  }
+}
+#start-grocery-shift-btn:active, #reset-game:active{
+  background-color: rgb(214, 214, 6);
+}
+#start-grocery-shift-btn:hover, #reset-game:hover{
+  background-color: rgb(199, 199, 3);
+  cursor: pointer;
+}
+
+
+
+.cashier-job-wrapper{
+  width: 100%;
+  height: 100vh;
+  background-color: yellow;
+  background-image: url("./assets/images/grocery-backgr-shelves.jpg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 110% 110%;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+ }
+
+.grocery-table-wrapper{
+  width: 100%;
+  height: 250px;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 3;
+}
+
+.table-top{
+  width: 100%;
+  height: 70%;
+  border-top: 3px solid gray;
+  background: linear-gradient(rgb(131, 47, 209), rgb(97, 26, 163));
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cash-register{
+  position: absolute;
+  top: -70%;
+  left: -30px;
+  width: 270px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.cash-monitor-screen{
+  width: 250px;
+  height: 140px;
+  background-color: aliceblue;
+  position: absolute;
+  z-index: 5;
+  top: -70%;
+  left: 5px;
+  border: 5px solid rgb(1, 1, 43);
+  border-radius: 3px;
+  display: flex;
+}
+
+.job-stats-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.end-shift-btn-cntr{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#end-shift{
+  width: 45px;
+  height: 5px;
+  padding: 8px;
+  border-radius: 3px;
+  font-size: 6px;
+  font-weight: bold;
+  margin: 5px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: red;
+  transition: background-color 0.2s ease-in-out;
+}
+#end-shift:hover{
+  background-color: rgb(216, 4, 4);
+  cursor: pointer;
+}
+.job-stats{
+  height: 100%;
+  background-color: rgb(252, 252, 252);
+  position: relative;
+  padding: 4px;
+}
+.job-stats p{
+  font-size: 5px;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+.job-stats p > span{
+  font-size: 6px;
+}
+
+.screen-transaction-wrapper{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.scanned-items-grid-wrapper{
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-direction: column;
+  position: relative;
+}
+
+.scanned-items-grid-wrapper p{
+  width: 100%;
+  text-align: center;
+  font-size: 7px;
+  font-weight: bold;
+  position: relative;
+  margin-bottom: 5px;
+}
+#scanned-items-grid-cntr{
+  display: grid;
+  width: 65%;
+  padding: 0 3px;
+  grid-template-columns: repeat(1, 1fr);
+  max-height: 50%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  position: relative;
+  background-color: rgb(243, 239, 239);
+}
+.scanned-items-grid-items{
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 2fr;
+}
+.scanned-items-grid-items p{
+  text-align: left;
+  font-size: 4px;
+  margin: 0;
+}
+.grid-label{
+  width: 65%;
+  font-weight: normal;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 2fr;
+}
+.grid-label p{
+  font-size: 4px !important;
+  text-align: left;
+  padding-top: 2px;
+  color: rgba(0, 0, 0, 0.514);
+}
+
+.change-section{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+
+.manual-amount-input{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.manual-amount-input input[type="number"]{
+  width: 100%;
+  font-size: 16px;
+  padding: 0 0 0 3px;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  margin-top: 0;
+}
+.manual-amount-input input::placeholder{
+  font-size: 8px;
+}
+
+.change-calc-section{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.change-calc-section button{
+  width: 65px;
+  height: 20px;
+  background-color: orange;
+  border: none;
+  border-radius: 3px;
+  font-size: 6px;
+  font-weight: bold;
+  color: black;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.change-calc-section button:hover{
+  background-color: rgb(209, 152, 46);
+  cursor: pointer;
+}
+
+.change-calc-section p{
+  font-size: 6px;
+  align-self: flex-start;
+  font-weight: bold;
+  margin-top: 5px;
+  background-color: rgb(235, 234, 234);
+  width: 100%;
+}
+
+.change-calc-section p > span{
+  font-size: 7px;
+}
+.time-left-div{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.time-left-div p{
+  font-size: 5px;
+  font-weight: bold;
+  padding-right: 4px;
+  color: red;
+}
+
+
+.cash-monitor-total-screen{
+  width: 75px ;
+  height: 26px;
+  background-color: rgb(53, 52, 52);
+  border: 3px solid rgb(12, 2, 51);
+  position: absolute;
+  top: -86%;
+  left: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.cash-monitor-total-screen p{
+  font-size: 6px;
+  font-weight: bold;
+  color: rgb(60, 255, 0);
+  width: 100%;
+}
+.cash-monitor-total-screen p > span{
+  font-size: 10px;
+  margin-left: 1px;
+}
+.conveyour-belt-contr{
+  height: 80%;
+  width: 100%;
+  position: absolute;
+  background-color: black;
+  align-self: center;
+  transform: skew(20deg);
+  left: 58%;
+  border: 5px solid grey;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#items-area {
+  margin: 0;
+  min-height: 80%;
+  width: 100%;
+  border: 2px dashed #636262;
+  padding: 10px 10px 10px 20px;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  gap: 8px;
+  background-color: #272727;
+}
+
+.grocery-item {
+  margin-right: 20px;
+  padding: 0px;
+  min-width: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.grocery-item:hover {
+  transform: scale(1.15);
+  cursor: pointer;
+}
+
+.grocery-item-img{
+  width: 55px;
+  height: 55px;
+  transform: skew(-20deg);
+}
+
+.grocery-item.selected {
+  transform: scale(1.35);
+}
+
+.action-buttons{
+  position: absolute;
+  z-index: 4;
+  bottom: 89px;
+  left: 115px;
+  width: 55px;
+  height: 57px;
+  transform: skew(6deg);
+  background-color: rgb(44, 44, 88);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.action-buttons button{
+  width: 90%;
+  height: 14px;
+  font-size: 6px;
+  font-weight: bold;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 10px 5px;
+  box-shadow: 0 3px 5px rgba(255, 255, 255, 0.212);
+  transition: background-color 0.2s ease-in-out;
+}
+#confirm-purchase{
+  background-color: green;
+  color: white;
+}
+#confirm-purchase:active{
+  background-color: rgb(2, 99, 2);
+}
+#confirm-purchase:hover{
+  background-color: rgb(11, 172, 11);
+  cursor: pointer;
+}
+#cancel-purchase{
+  background-color: red;
+  color: white;
+}
+#cancel-purchase:hover{
+  background-color: rgb(153, 2, 2);
+  cursor: pointer;
+}
+#cancel-purchase:active{
+  background-color: rgb(196, 21, 21);
+}
+
+
+.table-edge{
+  width: 100%;
+  height: 5%;
+  background-color: gray;
+  border-bottom: 5px solid black;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.425);
+  background: linear-gradient(150deg, rgb(179, 179, 179), rgb(167, 164, 164), rgb(112, 109, 109));
+}
+
+.table-side{
+  width: 100%;
+  height: 25%;
+  background-color: rgb(44, 40, 40);
+  background: linear-gradient(150deg, rgb(117, 116, 116), rgb(133, 132, 132), rgb(53, 51, 51));
+  position: relative;
+}
+
+#job-security-bar {
+  width: 30%;
+  color: white;
+  background: orange;
+  padding: 6px;
+  margin: 10px auto;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+  font-size: 8px;
+}
+
+#scan-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 5px;
+  left: 20%;
+  transform: skew(12deg);
+  padding: 10px 8px;
+  width: 150px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.192);
+  background: linear-gradient(150deg, rgb(88, 87, 87), rgb(90, 88, 88), rgb(43, 42, 42));
+  color: rgb(216, 213, 213);
+}
+
+#scan-btn:hover{
+  background: linear-gradient(150deg, rgb(88, 87, 87), rgb(90, 88, 88), rgb(43, 42, 42));
+  cursor: pointer;
+}
+
+#give-change-btn{
+  width: 60px;
+  height: 30px;
+  font-size: 8px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  color: rgb(231, 229, 229);
+  background-color: green;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 0;
+}
+
+#give-change-btn:hover{
+  background-color: rgb(2, 99, 2);
+  cursor: pointer;
+}
+
+.popup-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.popup-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+}
+
+.popup-content h2 {
+  margin-top: 0;
+}
+
+.popup-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+
+.payment-dialog-content button{
+  color: white;
+  width: 100px;
+  height: 30px;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: blue;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid blue;
+  transition: background-color 0.2s ease-in-out;
+  margin: 20px auto 5px auto;
+  padding: 10px 20px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.192);
+}
+
+.payment-dialog-content button:hover{
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  color: blue;
+}
+
+.payment-method-popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.payment-dialog-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+#customer-area {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.customer {
+  position: absolute;
+  bottom: -190px;
+  right: -200px; /* start off-screen on the right */
+  width: 220px;
+  height: auto;
+  transition: right 1.2s ease-in-out;
+}
+
+.customer.entering {
+  right: 10px; /* enter into view */
+}
+
+.customer.leaving {
+  right: 300px; /* leave to the left */
+}
+
+.tips-jar{
+  width: 70px;
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  height: 40px;
+  border: 2px solid black;
+  border-radius: 2px 2px 50% 50%;
+  background-color: beige;
+  color: #0d9c49;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+}
+.tips-jar span{
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#tips-dialog-div{
+  position: absolute;
+  width: 60%;
+  height: 35px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #0d9c49;
+  border: 2px solid black;
+  z-index: 999;
+  top: 45%;
+  left: 25%;
+  display: none;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  scale: 0;
+  animation: popOut 0.3s ease-in-out forwards;
+}
+
+@keyframes popOut{
+  to{
+    scale: 1;
+  }
+}
+
+.day-display{
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 40px;
+  background-color: #ffffff;
+  color: #0d9c49;
+  border: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.account-bal{
+  position: absolute;
+  top: 6px;
+  left: 15px;
+  width: auto;
+  height: 30px;
+  background-color: #ffffff;
+  color: #0d9c49;
+  border: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+#open-rulebook-btn {
+  padding: 0;
+  font-size: 14px;
+  border: none;
+  background-color: #004aad;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 10px;
+  display: flex;
+  position: absolute;
+  right: 30px;
+  top: -10px;
+}
+
+#open-rulebook-btn img{
+  width: 55px;
+  height: 75px;
+}
+
+#rulebook-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.rulebook-content {
+  background: #fdfdfd;
+  width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.2s ease-in-out;
+  font-size: 14px;
+}
+
+.rulebook-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rulebook-header h2 {
+  font-size: 18px;
+  color: #003366;
+}
+
+#close-rulebook-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.rulebook-body {
+  margin-top: 10px;
+}
+
+.rulebook-body h3 {
+  color: #004aad;
+  margin-top: 15px;
+}
+
+.rulebook-body ul {
+  padding-left: 20px;
+}
+
+.rulebook-body ul li {
+  margin-bottom: 5px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

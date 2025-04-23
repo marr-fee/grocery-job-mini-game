@@ -1,0 +1,27 @@
+
+  // --- GAME STATE VARIABLES ---
+export const gameState = {
+  currentCustomerItems: [],
+  scannedItems: [],
+  totalPrice: 0,
+  customersServed: 0,
+  itemsBagged: 0,
+  highScore: localStorage.getItem("highScore") || 0,
+  jobSecurity: 50,
+  salary: 1200,
+  days: 1,
+  accountBalance: 50,
+  customersToServe: Math.floor(Math.random() * 11) + 20,
+  totalGroceryLoss: 0,
+  currentPaymentMethod: null,
+  isCashPayment: false,
+  customerCash: 0,
+  changeGiven: false,
+  currentCustomerImg: null,
+  dailyTips: 0,
+  unhappyCustomer: false,
+  onBreak: false,
+  isFired: false,
+  shiftEnded: false,
+  timeLeft: 480, // in minutes
+}

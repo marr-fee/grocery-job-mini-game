@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grocery Shift</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- This is the main HTML file for the Grocery Job Mini-Game -->
+    <!-- It contains the structure for the grocery store interface, including the cashier job and customer interactions -->
+    <!-- The game starts with a supermarket building interface and transitions to the cashier job interface -->
+    <!-- Key sections include the job stats, scanned items grid, change calculation, and job security bar -->
+
+    <!-- GROCERY STORE JOB -->
+
+    <!-- Intro Wrapper -->
+    <div id="intro-1" class="intro-screen">
+      <h1 class="intro-title">MARRFEE TECH</h1>
+    </div>
+
+    <div id="intro-2" class="intro-screen hidden">
+      <p class="intro-note">
+        This is just a demo version.<br />More features will be added in future
+        updates.
+      </p>
+    </div>
+
+    <div class="grocery-store-wrapper">
+      <div class="grocery-sm-building" id="grocery-build">
+        <div class="supermarket-name">
+          <h3>MARRFEE</h3>
+          <p>SUPERMARKET</p>
+        </div>
+        <div class="day-display">DAY <span id="days">1</span></div>
+        <div class="account-bal">
+          Account&nbsp;Balance: <span id="account-balns-span">$50</span>
+        </div>
+        <div id="start-grocery-shift-btn">START WORK SHIFT</div>
+        <div id="reset-game">PLAY AGAIN</div>
+        <img
+          src="assets\images\supermarket-grocery-store.jpg"
+          alt="supermarket building"
+        />
+      </div>
+      <div class="cashier-job-wrapper" id="cashier-job-contr">
+        <div id="tips-dialog-div"></div>
+        <div id="payment-method-dialog" class="payment-method-popup">
+          <div class="payment-dialog-content">
+            <p id="payment-method-text"></p>
+
+            <p id="popup-message" style="margin-top: 10px; color: red"></p>
+
+            <button
+              onclick="document.getElementById('payment-method-dialog').style.display='none'; document.getElementById('popup-message').textContent = '';"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+
+        <div id="end-shift-popup" class="popup-container">
+          <div class="popup-content">
+            <h2>End of Shift Summary</h2>
+            <div id="end-shift-summary"></div>
+            <div id="fired-summary"></div>
+            <!-- <button onclick="location.reload()">Close</button> -->
+          </div>
+        </div>
+
+        <div id="customer-area">
+          <!-- Customer image will be injected here -->
+        </div>
+        <div class="grocery-table-wrapper">
+          <div class="table-top">
+            <div class="cash-monitor">
+              <div class="cash-monitor-total-screen">
+                <p>Total: $<span id="total-price">0.00</span></p>
+              </div>
+
+              <div class="action-buttons">
+                <button id="cancel-purchase">Cancel Purchase</button>
+                <button id="confirm-purchase">Confirm Purchase</button>
+              </div>
+              <!-- monitor main screen -->
+              <div class="cash-monitor-screen">
+                <div class="job-stats-wrapper">
+                  <div class="job-stats">
+                    <p>
+                      Customers Served: <span id="customers-served">0</span>
+                    </p>
+                    <p>Items Bagged: <span id="items-bagged">0</span></p>
+                    <p>
+                      High Score (Items Bagged):
+                      <span id="high-score">0</span>
+                    </p>
+                  </div>
+                  <div class="end-shift-btn-cntr">
+                    <button id="end-shift">End&nbsp;Shift</button>
+                  </div>
+                </div>
+                <div class="screen-transaction-wrapper">
+                  <div class="scanned-items-grid-wrapper">
+                    <p>Scan items and give correct change!</p>
+                    <div class="grid-label">
+                      <p>SN</p>
+                      <p>Item(s)</p>
+                      <p>Qnty</p>
+                      <p>Price</p>
+                    </div>
+                    <div id="scanned-items-grid-cntr">
+                      <div class="scanned-items-grid-items">
+                        <p id="serial-num">1</p>
+                        <p id="grocery-item">Banana</p>
+                        <p id="item-quantity">2</p>
+                        <p id="item-cost">$10.00</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="change-section">
+                    <div class="manual-amount-input">
+                      <input
+                        type="number"
+                        id="player-total-entry"
+                        placeholder="Enter total manually"
+                      />
+                      <input
+                        type="number"
+                        id="amount-paid"
+                        placeholder="Customer paid amount"
+                      />
+                    </div>
+
+                    <div class="change-calc-section">
+                      <button id="calculate-change">
+                        Calculate&nbsp;Change
+                      </button>
+
+                      <p>Change: $<span id="change-output">0.00</span></p>
+                    </div>
+                    <div class="time-left-div">
+                      <p>Time Left: <span id="job-timer">8h 00</span>m</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <img
+                src="assets\images\cash-register-removebg-preview.png"
+                alt="cash register"
+                class="cash-register"
+              />
+            </div>
+            <button id="give-change-btn">Give Change</button>
+            <button id="scan-btn">Scan Selected Item</button>
+            <div class="conveyour-belt-contr">
+              <div id="items-area"></div>
+            </div>
+          </div>
+          <div class="table-edge"></div>
+          <div class="table-side">
+            <div class="tips-jar">
+              Total Tips: <span id="tips-count"></span>
+            </div>
+            <div id="job-security-bar">Job Security: 50%</div>
+
+            <div id="open-rulebook-btn">
+              <img
+                src="assets/images/book.png"
+                alt="rule book"
+                class="rulebook-icon"
+              />
+            </div>
+
+            <!-- Rulebook Modal -->
+            <div id="rulebook-modal" class="hidden">
+              <div class="rulebook-content">
+                <div class="rulebook-header">
+                  <h2>📘 Grocery Job Rulebook</h2>
+                  <button id="close-rulebook-btn">✖</button>
+                </div>
+                <div class="rulebook-body">
+                  <h3>Objective</h3>
+                  <p>
+                    Serve customers by scanning groceries and processing
+                    payments accurately and efficiently.
+                  </p>
+
+                  <h3>Gameplay Rules</h3>
+                  <ul>
+                    <li>🧾 Scan all items before the customer gets upset.</li>
+                    <li>
+                      💵 If payment method is <strong>Cash</strong>, you are to
+                      manually input the customer's total purchace and the
+                      customer's cash amount, click the calculate change button
+                      and return the correct change by clicking the give change
+                      button and finally confirm purchace.
+                    </li>
+                    <li>
+                      📲 Otherwise if payment method is <strong>Card</strong>,
+                      go ahead and click confirm purchace button.
+                    </li>
+                    <li>
+                      💰The faster you perform, the happier the customer and the
+                      higher your chances of getting a tip from the customer.
+                    </li>
+                  </ul>
+
+                  <h3>Shift Management</h3>
+                  <ul>
+                    <li>
+                      ⏰ You have a limited time to serve a fixed number of
+                      customers.
+                    </li>
+                    <li>
+                      🧑‍💼 Serve all customers before time runs out to earn job
+                      security.
+                    </li>
+                    <li>
+                      📊 Earn salary and tips, but be mindful of grocery losses!
+                    </li>
+                  </ul>
+
+                  <h3>Firing & Salary</h3>
+                  <ul>
+                    <li>😠 Unhappy customers reduce your job security.</li>
+                    <li>
+                      🔥 If job security hits 0, you're fired and must pay back
+                      10% of store losses.
+                    </li>
+                    <li>
+                      📈 Job Security reaching 85 means increased salary for the
+                      next month.
+                    </li>
+                    <li>
+                      📅 At the end of each in-game month (30 days), your salary
+                      is deposited.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
