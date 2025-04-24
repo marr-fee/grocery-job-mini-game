@@ -25,10 +25,20 @@ levelCompleteSound.volume = 0.6;
 levelCompleteSound.preload = "auto";
 levelCompleteSound.load();
 
+export const confirmPurchaseSound = new Audio('assets/sounds/confirm-purchase-sound.mp3');
+confirmPurchaseSound.volume = 0.6;
+confirmPurchaseSound.preload = "auto";
+confirmPurchaseSound.load();
+
 export const tipsSound = new Audio('assets/sounds/level-up-bonus-sequence-2-186891.mp3');
 tipsSound.volume = 0.6;
 tipsSound.preload = "auto";
 tipsSound.load();
+
+export const tipsHundredSound = new Audio('assets/sounds/hundred-sound.mp3');
+tipsHundredSound.volume = 0.6;
+tipsHundredSound.preload = "auto";
+tipsHundredSound.load();
 
 export const bgm = new Audio('assets/sounds/game-music-loop-3-144252.mp3');
 bgm.loop = true;

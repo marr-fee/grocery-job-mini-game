@@ -1,7 +1,8 @@
 
 import { gameState } from "./gameState.js";
 import { tipsJar, tipsDialogDiv } from "./domConstants.js";
-import { tipsSound } from "./audio/sounds.js";
+import { tipsSound, tipsHundredSound} from "./audio/sounds.js";
+import { set } from "mongoose";
 
 // ============= CHECK FOR TIP$ ===========
 
@@ -28,12 +29,20 @@ export function getsTip() {
   tipsDialogDiv.style.display = 'flex';
   if (customerTip >= 20) {
     tipsDialogDiv.innerText = `🔥 You got a HUGE Tip: $${customerTip}! 🔥🤑`;
+    tipsHundredSound.currentTime = 0;
+    tipsHundredSound.play();
+
+    setTimeout(() => {
+      tipsHundredSound.pause();
+      tipsHundredSound.currentTime = 0;
+    }, 2400);
   } else{
     tipsDialogDiv.innerText = `You got a $${customerTip} Tip! 😀 Well Done!`;
+    tipsSound.currentTime = 0;
+    tipsSound.play();
   }
   
-  tipsSound.currentTime = 0;
-  tipsSound.play();
+  
   
   setTimeout(()=>{
     tipsDialogDiv.style.display = 'none';

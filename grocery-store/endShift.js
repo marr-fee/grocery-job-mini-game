@@ -57,12 +57,15 @@ export function endShift(timeEnded) {
 
   let summaryText = `You served ${gameState.customersServed} customers and bagged ${gameState.itemsBagged} items.`;
 
-  if ( gameState.customersServed >= gameState.customersToServe  && !timeEnded) {
+  if (gameState.customersServed >= gameState.customersToServe && !timeEnded) {
     levelCompleteSound.currentTime = 0;
     levelCompleteSound.play();
     gameState.jobSecurity += 5;
     summaryText += `<br><br>All customers served before time!<br>Job Security increased! 🎉`;
-    endShift(false);
+    // Directly display the end shift summary instead of calling endShift again
+    endShiftSummary.innerHTML = summaryText;
+    endShiftPopup.style.display = 'flex';
+    return;
   } else {
     const unservedCount = gameState.customersToServe - gameState.customersServed;
     for (let i = 0; i < unservedCount; i++) {

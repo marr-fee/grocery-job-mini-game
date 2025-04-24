@@ -2,6 +2,7 @@ import { bgm } from "./audio/sounds.js";
 import { endShiftSummary, popupMessageElem, endShiftPopup, groceryBuilding, cashierJobCntr, paymentMethodDialog } from "./domConstants.js";
 
 
+
 export  function closeEndShiftPopUp(){
     endShiftSummary.innerHTML = '';
     endShiftPopup.style.display = 'none';
@@ -19,4 +20,14 @@ export function showPopupMessage(message, isError) {
     popupMessageElem.style.color = isError ? 'red' : 'green';
     popupMessageElem.style.display = 'block'; // Ensure the popup is visible
     paymentMethodDialog.style.display = 'flex';
+}
+
+
+// Add the clamp function directly here
+export function clampJobSecurity() {
+  if (gameState.jobSecurity > 100) {
+    gameState.jobSecurity = 100;
+  } else if (gameState.jobSecurity < 0) {
+    gameState.jobSecurity = 0;
+  }
 }

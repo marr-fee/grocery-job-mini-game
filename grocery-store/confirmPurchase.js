@@ -1,4 +1,6 @@
-import { errorSound, nextCustomerSound } from "./audio/sounds.js";
+
+
+import { errorSound, nextCustomerSound, confirmPurchaseSound } from "./audio/sounds.js";
 import { showPopupMessage } from "./utils.js";
 import { paymentMethodDialog } from "./domConstants.js";
 import { gameState } from "./gameState.js";
@@ -46,6 +48,8 @@ document.getElementById('confirm-purchase').addEventListener('click', () => {
 
   // Update scores after incrementing itemsBagged and customersServed
   updateScores();
+  confirmPurchaseSound.currentTime = 0;
+  confirmPurchaseSound.play();
 
   
 

@@ -23,6 +23,7 @@ document.getElementById('calculate-change').addEventListener('click', () => {
     errorSound.currentTime = 0;
     errorSound.play();
     showPopupMessage('Not enough money!', true);
+    return;
   } 
   const change = paid - gameState.totalPrice;
   changeOutput.textContent = change.toFixed(2);
