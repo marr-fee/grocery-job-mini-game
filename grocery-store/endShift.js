@@ -57,7 +57,7 @@ export function endShift(timeEnded) {
 
   let summaryText = `You served ${gameState.customersServed} customers and bagged ${gameState.itemsBagged} items.`;
 
-  if (gameState.customersServed >= gameState.customersToServe && !timeEnded) {
+  if ( gameState.customersToServe === 0 && !timeEnded) {
     levelCompleteSound.currentTime = 0;
     levelCompleteSound.play();
     gameState.jobSecurity += 5;
