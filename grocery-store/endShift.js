@@ -12,7 +12,7 @@ export function endShift(timeEnded) {
 
   bgm.pause();
   bgm.currentTime = 0;
-  gameState.days += 1;
+
 
   if (gameState.jobSecurity <= 0) {
     gameState.isFired = true;
@@ -38,7 +38,7 @@ export function endShift(timeEnded) {
     `;
 
     endShiftPopup.style.display = 'flex';
-    firedSummary.addEventListener('click', (e) => {
+    firedSummary.onclick = (e) => {
       if (e.target.classList.contains('end-shift-summary-btn')) {
         closeEndShiftPopUp();
         startGroceryJobBtn.style.visibility = 'hidden';
@@ -50,7 +50,7 @@ export function endShift(timeEnded) {
         daySpan.innerText = `${gameState.days}`;
         resetValues();
       }
-    });
+    };
 
     return;
   }
@@ -95,17 +95,21 @@ export function endShift(timeEnded) {
   endShiftSummary.innerHTML = summaryText;
   endShiftPopup.style.display = 'flex';
 
-  endShiftSummary.addEventListener('click', (e) => {
+  endShiftSummary.onclick = (e) => {
     if (e.target.classList.contains('end-shift-summary-btn')) {
       closeEndShiftPopUp();
       gameState.accountBalance += gameState.dailyTips;
       accountBalanceSpan.textContent = `$${gameState.accountBalance.toFixed(2)}`;
       daySpan.innerText = `${gameState.days}`;
-      resetValues();
+      prepareNextShift();
     }
-  });
+  };
+  
 }
 
-endShiftBtn.addEventListener('click', () => {
-  endShift(false);
+window.addEventListener('load', () => {
+  endShiftBtn.addEventListener('click', () => {
+    endShift(false);
+  });
 });
+

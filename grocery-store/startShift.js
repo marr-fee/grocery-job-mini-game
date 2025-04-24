@@ -4,6 +4,7 @@ import { startTimer } from "./timeLogic.js";
 import { updateScores } from "./scoreUpdate.js";
 import { playAgainBtn, popupMessageElem, startGroceryJobBtn, timerElem, tipsJar, totalDisplay, ruleBook } from "./domConstants.js";
 import { gameState } from "./gameState.js";
+import { prepareNextShift } from "./resetValues.js";
 
 export function startGroceryShift() {
   showNewCustomer();
@@ -18,6 +19,7 @@ playAgainBtn.addEventListener('click', () => {
   startGroceryJobBtn.style.visibility = 'visible';
 
   prepareNextShift();
+  
   Object.assign(gameState, {
     jobSecurity: 50,
     salary: 1200,

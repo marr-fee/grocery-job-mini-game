@@ -20,45 +20,43 @@ import { updateScores } from "./scoreUpdate.js";
       return;
     }
 
-    else if (Math.abs(enteredTotal - gameState.totalPrice) > 0.01) {
+    if (Math.abs(enteredTotal - gameState.totalPrice) > 0.01) {
       showPopupMessage('Entered total is incorrect!', true);
       errorSound.currentTime = 0;
       errorSound.play();
       return;
     }
 
-    else if (Math.abs(enteredPaid - gameState.customerCash) > 0.01) {
+    if (Math.abs(enteredPaid - gameState.customerCash) > 0.01) {
       showPopupMessage(`Customer gave $${gameState.customerCash}. You entered $${enteredPaid}.`);
       errorSound.currentTime = 0;
       errorSound.play();
       return;
     }
 
-    else if (enteredPaid < enteredTotal) {
+    if (enteredPaid < enteredTotal) {
       showPopupMessage('Not enough money!', true);
       errorSound.currentTime = 0;
       errorSound.play();
       return;
     }
-    else if (gameState.changeGiven){
+    if (gameState.changeGiven){
       showPopupMessage('You already gave change!', true);
       errorSound.currentTime = 0;
       errorSound.play();
       return;
     }
-    else {
-      const change = enteredPaid - enteredTotal;
+    
+    const change = enteredPaid - enteredTotal;
     changeOutput.textContent = change.toFixed(2);
     gameState.changeGiven = true;
     gameState.jobSecurity += 1;
-    updateScores();
-    getsTip();
     
-
-
-    showPopupMessage(`Change given: $${change.toFixed(2)}`);
+    getsTip();
+    showPopupMessage(`Change given: $${change.toFixed(2)}`, false);
     successSound.playbackRate = 1.5;
     successSound.currentTime = 0;
     successSound.play();
-    }
+    updateScores();
+    
   });

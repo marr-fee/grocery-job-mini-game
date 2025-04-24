@@ -7,6 +7,10 @@ import { customerImages } from "./data/customers.js";
 
 export function startNewCustomer() {
     gameState.unhappyCustomer = false;
+    gameState.changeGiven = false;
+    gameState.customerCash = Math.floor(Math.random() * 100) + 1; // Random cash between $1 and $100
+    gameState.currentPaymentMethod = null;
+    gameState.isCashPayment = false;
     treadmill.innerHTML = '';
     gameState.scannedItems = [];
     gameState.totalPrice = 0;

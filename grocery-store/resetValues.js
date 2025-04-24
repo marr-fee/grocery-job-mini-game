@@ -25,35 +25,24 @@ export function resetValues() {
     currentCustomerImg: null,
     timeLeft: 480 // Reset the clock to full shift
   });
-
+  
+  gameState.accountBalance += gameState.dailyTips;
+  accountBalanceSpan.textContent = `$${gameState.accountBalance.toFixed(2)}`;
   tipsJar.innerText = `$${gameState.dailyTips.toFixed(2)}`;
   timerElem.textContent = '8h 0m';
   gameState.currentCustomerImg = null; // Reset current customer image
   customerArea.innerHTML = ''; // Clear all customers from the area
+  totalDisplay.textContent = '$0.00';
+  daySpan.innerText = `${gameState.days}`;
 }
 
 
 
 export function prepareNextShift() {
-  resetValues(); // reset core game state
   gameState.days += 1;
-  daySpan.innerText = `${gameState.days}`;
-  // Additional resets for UI & state not handled in resetValues
-  gameState.shiftEnded = false;
-  gameState.changeGiven = false;
-  gameState.unhappyCustomer = false;
-  gameState.totalGroceryLoss = 0;
-  gameState.currentCustomerImg = null;
-
+  resetValues(); // reset core game state
   // Update UI elements
   updateScores();
-  showNewCustomer(); // Show a new customer
-  startNewCustomer(); // Start a new customer
-  timerElem.textContent = '8h 0m';
-  totalDisplay.textContent = '$0.00';
-  tipsJar.textContent = `$${gameState.dailyTips.toFixed(2)}`;
-  popupMessageElem.textContent = ''; // clear popup
-
   // Optional: console.log to debug
-  console.log("✔️ Shift prepped and reset.");
+  // console.log("✔️ Shift prepped and reset.");
 }

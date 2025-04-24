@@ -16,11 +16,10 @@ export function getsTip() {
 
   const coinToss = Math.random();
 
-  if (coinToss < 0.7 ){
+  if (coinToss < 0.7 || gameState.unhappyCustomer === true){
     return;
-  }else if (gameState.unhappyCustomer === true){
-    return;
-  } else {
+  }
+  else {
 // Pick tips randomly from weighted array
   const customerTip = possibleTips[Math.floor(Math.random() * possibleTips.length)];
   gameState.dailyTips += customerTip;

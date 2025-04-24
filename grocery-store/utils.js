@@ -9,15 +9,14 @@ export  function closeEndShiftPopUp(){
     groceryBuilding.style.display = 'flex';
     cashierJobCntr.style.display = "none";
     // document.querySelector('.passer-by-wrapper').style.visibility = 'visible';
-    // mapBtn.style.display = 'flex';
     bgm.pause();
   };
 
 // --- POPUP MESSAGE FUNCTION ---
 
-export function showPopupMessage(message, isError = false) {
-    popupMessageElem.textContent = ''; // Clear previous message
+export function showPopupMessage(message, isError) {
     popupMessageElem.textContent = message;
     popupMessageElem.style.color = isError ? 'red' : 'green';
+    popupMessageElem.style.display = 'block'; // Ensure the popup is visible
     paymentMethodDialog.style.display = 'flex';
 }

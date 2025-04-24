@@ -9,7 +9,7 @@ import { updateScores } from "./scoreUpdate.js";
 
  // --- CONFIRM AND CANCEL PURCHASE ---
 
- document.getElementById('confirm-purchase').addEventListener('click', () => {
+document.getElementById('confirm-purchase').addEventListener('click', () => {
 
   if (gameState.scannedItems.length < gameState.currentCustomerItems.length) {
     errorSound.currentTime = 0;
@@ -27,7 +27,13 @@ import { updateScores } from "./scoreUpdate.js";
     updateScores(); 
     return;
   }
-  getsTip();
+
+  if (!gameState.isCashPayment && gameState.unhappyCustomer === false) {
+    gameState.jobSecurity += 1;
+    gameState.unhappyCustomer = false;
+    getsTip();
+  }
+  
   paymentMethodDialog.style.display = 'none';
   gameState.itemsBagged += gameState.scannedItems.length;
   gameState.customersServed += 1;
@@ -35,18 +41,17 @@ import { updateScores } from "./scoreUpdate.js";
   // Increase job security if customer patience is above 0
   if (gameState.currentCustomerImg && gameState.currentCustomerImg.patience.current() > 0) {
     gameState.jobSecurity += 1;
+    gameState.unhappyCustomer = false;
   }
 
   // Update scores after incrementing itemsBagged and customersServed
   updateScores();
-  if (gameState.unhappyCustomer === false){
-    gameState.jobSecurity += 1;
-  } 
+
   
 
   customerLeaves(() => {
-    if (gameState.customersServed >= gameState.customersToServe) {
-      endShift();
+    if (gameState.customersToServe === 0) {
+      endShift(false);
     } else {
       showNewCustomer();
       startNewCustomer();
@@ -59,5 +64,5 @@ import { updateScores } from "./scoreUpdate.js";
       }, 1600);
     }
   });
-
+  
 });
