@@ -2,7 +2,6 @@
 import { gameState } from "./gameState.js";
 import { tipsJar, tipsDialogDiv } from "./domConstants.js";
 import { tipsSound, tipsHundredSound} from "./audio/sounds.js";
-import { set } from "mongoose";
 
 // ============= CHECK FOR TIP$ ===========
 
