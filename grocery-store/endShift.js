@@ -4,6 +4,7 @@ import { itemList } from "./data/items.js";
 import { accountBalanceSpan, daySpan, endShiftBtn, endShiftPopup, endShiftSummary, firedSummary, playAgainBtn, startGroceryJobBtn, customerArea } from "./domConstants.js";
 import { closeEndShiftPopUp } from "./utils.js";
 import { resetValues, prepareNextShift} from "./resetValues.js";
+import { updatePromotionMeter } from "./utils.js";
 
 // --- END SHIFT FUNCTION ---
 export function endShift(timeEnded) {
@@ -61,8 +62,9 @@ export function endShift(timeEnded) {
     levelCompleteSound.currentTime = 0;
     levelCompleteSound.play();
     gameState.jobSecurity += 5;
+    clampJobSecurity();
+    updatePromotionMeter(); // Update promotion meter if job security is high enough
     summaryText += `<br><br>All customers served before time!<br>Job Security increased! 🎉`;
-    // Directly display the end shift summary instead of calling endShift again
     endShiftSummary.innerHTML = summaryText;
     endShiftPopup.style.display = 'flex';
     return;

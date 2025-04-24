@@ -1,5 +1,4 @@
-
-  // --- GAME STATE VARIABLES ---
+// --- GAME STATE VARIABLES ---
 export const gameState = {
   currentCustomerItems: [],
   scannedItems: [],
@@ -24,4 +23,5 @@ export const gameState = {
   isFired: false,
   shiftEnded: false,
   timeLeft: 480, // in minutes
-}
+  promotionMeter: 0,
+};

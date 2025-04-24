@@ -31,3 +31,33 @@ export function clampJobSecurity() {
     gameState.jobSecurity = 0;
   }
 }
+
+export function updatePromotionMeter() {
+  if (gameState.jobSecurity >= 70) {
+    gameState.promotionMeter += 1;
+
+    if (gameState.promotionMeter === 30) {
+      showPopupMessage(
+        "You are doing such a great job, you are not far from a promotion!",
+        false
+      );
+    } else if (gameState.promotionMeter === 50) {
+      popupMessageElem.innerHTML = `
+        <p>You have done such a great job so far and the owners would like to offer you a promotion to store manager and a 100% salary increase!</p>
+        <button id="accept-promotion" style="background-color: blue; color: white; padding: 10px; margin: 5px;">Accept</button>
+        <button id="decline-promotion" style="background-color: red; color: white; padding: 10px; margin: 5px;">Decline</button>
+      `;
+      popupMessageElem.style.display = "block";
+
+      document.getElementById("decline-promotion").onclick = () => {
+        popupMessageElem.style.display = "none";
+        gameState.promotionMeter = 31; // Reset promotion meter to 31
+      };
+
+      // Leave the accept button event listener empty for now
+      document.getElementById("accept-promotion").onclick = () => {
+        // Placeholder for future logic
+      };
+    }
+  }
+}
