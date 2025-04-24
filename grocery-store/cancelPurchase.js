@@ -1,5 +1,3 @@
-
-
 import { gameState } from "./gameState.js";
 import { showPopupMessage } from "./utils.js";
 import { errorSound } from "./audio/sounds.js";
@@ -16,13 +14,14 @@ document.getElementById('cancel-purchase').addEventListener('click', () => {
   const hasPaidEnough = !isNaN(paid) && paid >= gameState.totalPrice;
 
   if ((isCard || hasPaidEnough || gameState.changeGiven)) {
-    showPopupMessage('Customer left unhappy...', true);
-
-    errorSound.currentTime = 0;
-    errorSound.play();
-    gameState.jobSecurity -= 1;
-    gameState.unhappyCustomer = true;
-    updateScores();
+    if (!gameState.unhappyCustomer) {
+      showPopupMessage('Customer left unhappy...', true);
+      errorSound.currentTime = 0;
+      errorSound.play();
+      gameState.jobSecurity -= 1;
+      gameState.unhappyCustomer = true;
+      updateScores();
+    }
   }
 
   customerLeaves(() => {

@@ -31,6 +31,12 @@ import { updateScores } from "./scoreUpdate.js";
   paymentMethodDialog.style.display = 'none';
   gameState.itemsBagged += gameState.scannedItems.length;
   gameState.customersServed += 1;
+
+  // Increase job security if customer patience is above 0
+  if (gameState.currentCustomerImg && gameState.currentCustomerImg.patience.current() > 0) {
+    gameState.jobSecurity += 1;
+  }
+
   // Update scores after incrementing itemsBagged and customersServed
   updateScores();
   if (gameState.unhappyCustomer === false){

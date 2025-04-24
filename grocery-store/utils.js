@@ -1,5 +1,3 @@
-
-
 import { bgm } from "./audio/sounds.js";
 import { endShiftSummary, popupMessageElem, endShiftPopup, groceryBuilding, cashierJobCntr, paymentMethodDialog } from "./domConstants.js";
 
@@ -17,7 +15,8 @@ export  function closeEndShiftPopUp(){
 
 // --- POPUP MESSAGE FUNCTION ---
 
-export  function showPopupMessage(message, isError = false) {
+export function showPopupMessage(message, isError = false) {
+    popupMessageElem.textContent = ''; // Clear previous message
     popupMessageElem.textContent = message;
     popupMessageElem.style.color = isError ? 'red' : 'green';
     paymentMethodDialog.style.display = 'flex';

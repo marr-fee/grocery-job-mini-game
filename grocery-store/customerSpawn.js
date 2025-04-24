@@ -1,4 +1,3 @@
-
 import { gameState } from "./gameState.js";
 import { treadmill, totalDisplay, changeOutput, amountPaidInput, manualTotalInput, groceryGridCntr, customerArea } from "./domConstants.js";
 import { itemList } from "./data/items.js";
@@ -97,12 +96,10 @@ function showNewCustomer() {
   const patienceInterval = setInterval(() => {
     currentPatience--;
     
-    if (currentPatience <= 0) {
+    if (currentPatience <= 0 && !gameState.unhappyCustomer) {
       currentPatience = 0;
       updatePatienceBar();
       clearInterval(patienceInterval);
-      // emoji.textContent = '😡';  // Angry emoji when patience runs out
-      // emoji.style.display = 'block';
       gameState.unhappyCustomer = true;
       gameState.jobSecurity -= 1; // Trigger job security decrease
     } else {
