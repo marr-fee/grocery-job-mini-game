@@ -1,6 +1,6 @@
 // timeLogic.js
 import { gameState } from "./gameState.js";
-import { timerElem } from "./domConstants.js";
+import { timerElem, clockTimer } from "./domConstants.js";
 import { endShift } from "./endShift.js";
 
 export function startTimer() {
@@ -12,10 +12,12 @@ export function startTimer() {
     const hours = Math.floor(gameState.timeLeft / 60);
     const minutes = gameState.timeLeft % 60;
     timerElem.textContent = `${hours}h ${minutes}m`;
+    clockTimer.textContent = `${hours}h ${minutes}m`;
+    
 
     if (gameState.timeLeft <= 0 || gameState.shiftEnded) {
       clearInterval(timerInterval);
       endShift(true);
-    }
-  }, 1000);
+    }}, 1000);
+
 }

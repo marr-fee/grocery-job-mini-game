@@ -1,5 +1,3 @@
-
-
 export const treadmill = document.getElementById('items-area');
 export const scanBtn = document.getElementById('scan-btn');
 export const totalDisplay = document.getElementById('total-price');
@@ -35,4 +33,6 @@ export const daySpan = document.getElementById('days');
 export const playAgainBtn = document.getElementById('reset-game');
 export const openRuleBookBtn = document.getElementById('open-rulebook-btn');
 export const closeRuleBookBtn = document.getElementById('close-rulebook-btn');
-export const ruleBook = document.getElementById('rulebook-modal'); 
+export const ruleBook = document.getElementById('rulebook-modal');
+export const clockTimer = document.getElementById("clock-timer");
+// export const patienceFill = document.getElementById("patience-fill");

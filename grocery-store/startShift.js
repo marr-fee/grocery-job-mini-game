@@ -12,6 +12,8 @@ export function startGroceryShift() {
   startTimer();
   updateScores();
   ruleBook.classList.add('hidden');
+  console.log(gameState.customersToServe);
+  
 }
 
 playAgainBtn.addEventListener('click', () => {

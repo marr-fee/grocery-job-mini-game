@@ -18,5 +18,5 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     intro2.style.display = 'none';
     game.style.display = 'flex';
-  }, 6200); // after 4s of intro 2 (total 7s)
+  }, 5800); // after 4s of intro 2 (total 7s)
 });

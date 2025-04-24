@@ -48,12 +48,11 @@ export function startNewCustomer() {
 export // --- CUSTOMER SPAWN ---
 
 function showNewCustomer() {
-  if ( gameState.onBreak === true){
+  if (gameState.onBreak === true || gameState.customersServed >= gameState.customersToServe) {
     return;
   }
-  
-  // Remove existing customer if any
 
+  // Remove existing customer if any
   if (gameState.currentCustomerImg) {
     customerArea.removeChild(gameState.currentCustomerImg);
   }
@@ -75,7 +74,7 @@ function showNewCustomer() {
   emoji.classList.add('patience-emoji');
   patienceMeter.appendChild(emoji);
 
-  img.appendChild(patienceMeter);  // Attach the patience meter to the customer image
+  img.appendChild(patienceMeter); // Attach the patience meter to the customer image
 
   const maxPatience = Math.floor(Math.random() * 11) + 15; // Random patience between 15 and 25
   let currentPatience = maxPatience;
@@ -99,7 +98,7 @@ function showNewCustomer() {
   // Timer to reduce patience every second
   const patienceInterval = setInterval(() => {
     currentPatience--;
-    
+
     if (currentPatience <= 0 && !gameState.unhappyCustomer) {
       currentPatience = 0;
       updatePatienceBar();
