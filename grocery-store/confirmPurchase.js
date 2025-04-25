@@ -30,8 +30,6 @@ document.getElementById('confirm-purchase').addEventListener('click', () => {
   }
 
   if (!gameState.isCashPayment && gameState.unhappyCustomer === false) {
-    gameState.jobSecurity += 1;
-    gameState.unhappyCustomer = false;
     getsTip();
   }
   
@@ -40,13 +38,15 @@ document.getElementById('confirm-purchase').addEventListener('click', () => {
   gameState.customersServed += 1;
 
   // Increase job security if customer patience is above 0
-  if (gameState.currentCustomerImg && gameState.currentCustomerImg.patience.current() > 0) {
+  if (gameState.currentCustomerImg && gameState.currentCustomerImg.patience.current() > 0 || !gameState.isCashPayment && gameState.unhappyCustomer === false) {
     gameState.jobSecurity += 1;
     gameState.unhappyCustomer = false;
+    updateScores();
   }
 
   // Update scores after incrementing itemsBagged and customersServed
-  updateScores();
+  
+  
   confirmPurchaseSound.currentTime = 0;
   confirmPurchaseSound.play();
 

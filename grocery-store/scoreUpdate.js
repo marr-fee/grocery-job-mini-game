@@ -27,7 +27,6 @@ export function updateScores() {
 
     if( gameState.unhappyCustomer){
     gameState.jobSecurity -= 1;
-    console.log(`Job security: ${gameState.jobSecurity}`);
   }
 }
 

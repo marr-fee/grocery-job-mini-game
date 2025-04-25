@@ -1,4 +1,3 @@
-
 import { giveChangeBtn, manualTotalInput, amountPaidInput, changeOutput } from "./domConstants.js";
 import { gameState } from "./gameState.js";
 import { showPopupMessage } from "./utils.js";
@@ -51,7 +50,6 @@ import { updateScores } from "./scoreUpdate.js";
     changeOutput.textContent = change.toFixed(2);
     gameState.changeGiven = true;
     gameState.jobSecurity += 1;
-    console.log(`Job security: ${gameState.jobSecurity}`);
     
     
     getsTip();

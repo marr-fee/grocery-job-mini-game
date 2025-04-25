@@ -27,4 +27,3 @@ export const gameState = {
   newGame: false,
   jobSecurityDeducted: false,
 };
-console.log('Initial jobSecurity:', gameState.jobSecurity);

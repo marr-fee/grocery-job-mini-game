@@ -13,7 +13,6 @@ export function startGroceryShift() {
   startTimer();
   updateScores();
   ruleBook.classList.add('hidden');
-  console.log(gameState.customersToServe);
   passerByWrapper.style.visibility = 'hidden';
   
   streetSound.pause();

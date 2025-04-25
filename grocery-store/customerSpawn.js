@@ -111,7 +111,6 @@ function showNewCustomer() {
     }
   }, 1000);
 
-  updateScores(); // Update scores when a new customer arrives
   // Store the references in the image element
   img.patience = {
     max: maxPatience,
@@ -133,7 +132,8 @@ function showNewCustomer() {
   });
 
   gameState.currentCustomerImg = img;
- 
+  updateScores(); // Update scores when a new customer arrives
+
 }
 
 

@@ -50,6 +50,4 @@ export function prepareNextShift() {
   resetValues(); // reset core game state
     // Update UI elements
   updateScores();
-    // Optional: console.log to debug
-    // console.log("✔️ Shift prepped and reset.");
 }
