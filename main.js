@@ -10,11 +10,21 @@ window.addEventListener('load', () => {
   const game = document.querySelector('.grocery-store-wrapper');
   const playGameBtn = document.getElementById('play-game-btn');
 
-  // Show second intro after first
-  setTimeout(() => {
-    intro1.style.display = 'none';
-    intro2.style.display = 'flex';
-  }, 500); 
+  // // Show second intro after first
+  // setTimeout(() => {
+  //   intro1.style.display = 'none';
+  //   intro2.style.display = 'flex';
+  // }, 500); 
+
+  // intro1.addEventListener("animationend", () => {
+  //   intro1.style.display = "none";
+  //   intro2.style.display = "flex";
+  // });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    intro1.style.display = "none";
+    intro2.style.display = "flex";
+  });
 
   playGameBtn.addEventListener('click', () => {
     introcontainer.style.display = 'none';
