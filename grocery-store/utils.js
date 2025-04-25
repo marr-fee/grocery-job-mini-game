@@ -35,7 +35,7 @@ export function clampJobSecurity() {
 }
 
 export function updatePromotionMeter() {
-  if (gameState.jobSecurity >= 70) {
+  if (gameState.jobSecurity >= 80) {
     gameState.promotionMeter += 1;
 
     if (gameState.promotionMeter === 30) {

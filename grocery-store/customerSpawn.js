@@ -3,6 +3,7 @@ import { treadmill, totalDisplay, changeOutput, amountPaidInput, manualTotalInpu
 import { itemList } from "./data/items.js";
 import { customerImages } from "./data/customers.js";
 import { updateScores } from "./scoreUpdate.js";
+import { endShift } from "./endShift.js";
 
   // --- CUSTOMER SPAWN ---
 
@@ -49,7 +50,9 @@ export function startNewCustomer() {
 export // --- CUSTOMER SPAWN ---
 
 function showNewCustomer() {
-  if (gameState.onBreak === true || gameState.customersServed >= gameState.customersToServe) {
+  if (gameState.customersToServe - gameState.customersServed === 0) {
+    console.log('✅ All customers served — showing end shift popup');
+    requestAnimationFrame(() => endShift(false));
     return;
   }
 
