@@ -5,7 +5,7 @@ export const gameState = {
   totalPrice: 0,
   customersServed: 0,
   itemsBagged: 0,
-  highScore: localStorage.getItem("highScore") || 0,
+  highScore: localStorage.getItem("highScorePerHour") || 0,
   jobSecurity: 50,
   salary: 1200,
   days: 1,
@@ -24,4 +24,7 @@ export const gameState = {
   shiftEnded: false,
   timeLeft: 480, // in minutes
   promotionMeter: 0,
+  newGame: false,
+  jobSecurityDeducted: false,
 };
+console.log('Initial jobSecurity:', gameState.jobSecurity);

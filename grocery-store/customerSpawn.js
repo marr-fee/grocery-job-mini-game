@@ -2,6 +2,7 @@ import { gameState } from "./gameState.js";
 import { treadmill, totalDisplay, changeOutput, amountPaidInput, manualTotalInput, groceryGridCntr, customerArea } from "./domConstants.js";
 import { itemList } from "./data/items.js";
 import { customerImages } from "./data/customers.js";
+import { updateScores } from "./scoreUpdate.js";
 
   // --- CUSTOMER SPAWN ---
 
@@ -104,14 +105,13 @@ function showNewCustomer() {
       updatePatienceBar();
       clearInterval(patienceInterval);
       gameState.unhappyCustomer = true;
-      gameState.jobSecurity -= 1; // Trigger job security decrease
     } else {
       updatePatienceBar();
       gameState.unhappyCustomer = false;
     }
   }, 1000);
 
-
+  updateScores(); // Update scores when a new customer arrives
   // Store the references in the image element
   img.patience = {
     max: maxPatience,
@@ -133,6 +133,7 @@ function showNewCustomer() {
   });
 
   gameState.currentCustomerImg = img;
+ 
 }
 
 

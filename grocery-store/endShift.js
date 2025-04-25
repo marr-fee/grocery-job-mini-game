@@ -1,13 +1,15 @@
-import { bgm, levelCompleteSound } from "./audio/sounds.js";
+import { bgm, levelCompleteSound, streetSound, mainBgm } from "./audio/sounds.js";
 import { gameState } from "./gameState.js";
 import { itemList } from "./data/items.js";
-import { accountBalanceSpan, daySpan, endShiftBtn, endShiftPopup, endShiftSummary, firedSummary, playAgainBtn, startGroceryJobBtn, customerArea } from "./domConstants.js";
+import { accountBalanceSpan, daySpan, endShiftBtn, endShiftPopup, endShiftSummary, firedSummary, playAgainBtn, startGroceryJobBtn, customerArea, passerByWrapper } from "./domConstants.js";
 import { closeEndShiftPopUp } from "./utils.js";
 import { resetValues, prepareNextShift} from "./resetValues.js";
 import { updatePromotionMeter } from "./utils.js";
+import { calculateItemsBaggedPerHour, updateHighScoreDisplay } from "./scoreUpdate.js";
 
 // --- END SHIFT FUNCTION ---
 export function endShift(timeEnded) {
+
   if (gameState.shiftEnded) return; // Prevent multiple calls
   gameState.shiftEnded = true;
 
@@ -42,6 +44,12 @@ export function endShift(timeEnded) {
     firedSummary.onclick = (e) => {
       if (e.target.classList.contains('end-shift-summary-btn')) {
         closeEndShiftPopUp();
+        passerByWrapper.style.visibility = 'visible';
+        streetSound.currentTime = 0;
+        streetSound.play();
+        mainBgm.currentTime = 0;
+        mainBgm.play();
+
         startGroceryJobBtn.style.visibility = 'hidden';
         playAgainBtn.style.visibility = 'visible';
         gameState.accountBalance += gameState.dailyTips;
@@ -57,6 +65,11 @@ export function endShift(timeEnded) {
   }
 
   let summaryText = `You served ${gameState.customersServed} customers and bagged ${gameState.itemsBagged} items.`;
+
+  // Calculate items bagged per hour and update high score
+  const itemsBaggedPerHour = calculateItemsBaggedPerHour();
+  updateHighScoreDisplay();
+  summaryText += `<br><strong>Items Bagged Per Hour:</strong> ${itemsBaggedPerHour}`;
 
   if (gameState.customersServed >= gameState.customersToServe && !timeEnded) {
     levelCompleteSound.currentTime = 0;
@@ -93,7 +106,7 @@ export function endShift(timeEnded) {
   }
 
   summaryText += `<br><strong>Today's Total Tips:</strong> $${gameState.dailyTips.toFixed(2)}<br>`;
-  summaryText += `<br><strong>Job Security:</strong> ${gameState.jobSecurity}%<br>`;
+  // summaryText += `<br><strong>Job Security:</strong> ${gameState.jobSecurity}%<br>`;
   summaryText += `<button class="end-shift-summary-btn" style="margin: 10px auto 5px auto; color: white; font-size: 12px; padding: 5px 10px; text-align: center; background-color: blue;">
     CLOSE
   </button>`;
@@ -104,6 +117,11 @@ export function endShift(timeEnded) {
   endShiftSummary.onclick = (e) => {
     if (e.target.classList.contains('end-shift-summary-btn')) {
       closeEndShiftPopUp();
+      passerByWrapper.style.visibility = 'visible';
+      streetSound.currentTime = 0;
+      streetSound.play();
+      mainBgm.currentTime = 0;
+      mainBgm.play();
       gameState.accountBalance += gameState.dailyTips;
       accountBalanceSpan.textContent = `$${gameState.accountBalance.toFixed(2)}`;
       daySpan.innerText = `${gameState.days}`;
@@ -116,6 +134,7 @@ export function endShift(timeEnded) {
 window.addEventListener('load', () => {
   endShiftBtn.addEventListener('click', () => {
     endShift(false);
+    
   });
 });
 

@@ -13,35 +13,59 @@ html, body{
   width: 100%;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: linear-gradient(
+    150deg, black, #1a1a1a, #0e0e0e, #1a1a1a, black
+  );
 }
 
 /* Shared intro screen styles */
+
+
 .intro-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: linear-gradient(145deg, #0e0e0e, #1a1a1a);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99;
-  opacity: 0;
-  animation: fadeInOut 4s ease-in-out forwards;
+  flex-direction: column;
+  gap: 10px;
+ 
 }
 
-#intro-2 {
-  animation-delay: 3.5s;
+.first-intro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  animation: fadeInOut 4s ease-in-out forwards;
+  z-index: 99;
 }
 
 .intro-title {
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 3px;
+  background-image: linear-gradient(to right, #fd5032, #1489ff); 
+  -webkit-background-clip: text; 
+  color: transparent; 
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-  animation: pulseGlow 5.5s infinite ease-in-out;
+  animation: pulseGlow 6.5s infinite ease-in-out;
+}
+
+.second-intro{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
 }
 
 .intro-note {
@@ -50,15 +74,16 @@ html, body{
   padding: 20px;
   line-height: 1.6;
   animation: pulseGlow 2.5s infinite ease-in-out;
+  opacity: 1;
 }
 
 
 /* Fade animation */
 @keyframes fadeInOut {
-  0% { opacity: 0; display: flex;}
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { opacity: 0; display: none;}
+  0% { opacity: 0;}
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0;}
 }
 
 /* Glow effect */
@@ -67,6 +92,27 @@ html, body{
   50% { text-shadow: 0 0 20px #fff, 0 0 30px #555; }
 }
 
+@keyframes fadeIn {
+  to{
+    opacity: 1;
+  }
+}
+
+#play-game-btn{
+  padding: 10px 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+#play-game-btn:hover{
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
 
 .grocery-store-wrapper{
   width: 100%;
@@ -77,6 +123,7 @@ html, body{
   font-family: Arial, Helvetica, sans-serif;
   position: relative;
   overflow: hidden;
+  animation: fadeIn 2s ease-in-out forwards;
 }
 
 .grocery-sm-building{
@@ -162,7 +209,6 @@ html, body{
 .cashier-job-wrapper{
   width: 100%;
   height: 100dvh;
-  background-color: yellow;
   background-image: url("./assets/images/grocery-backgr-shelves.jpg");
   background-position: bottom;
   background-repeat: no-repeat;
@@ -745,7 +791,8 @@ html, body{
 #tips-dialog-div{
   position: absolute;
   width: 60%;
-  height: 35px;
+  min-height: 35px;
+  height: auto;
   padding: 5px;
   border-radius: 10px;
   background-color: #ffffff;
@@ -779,13 +826,15 @@ html, body{
   height: 40px;
   background-color: #ffffff;
   color: #0d9c49;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
   font-weight: bold;
+  gap: 5px;
+  font-family: serif;
 }
 
 .account-bal{
@@ -794,15 +843,16 @@ html, body{
   left: 15px;
   width: auto;
   height: 30px;
-  background-color: #ffffff;
+  background: linear-gradient(150deg, #ffffff, #f0f0f0, #e0e0e0);
   color: #0d9c49;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 5px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: normal;
+  gap: 5px;
   padding: 5px 10px;
 }
 
@@ -826,66 +876,75 @@ html, body{
   height: 75px;
 }
 
-#rulebook-modal {
+.rulebook-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  z-index: 1000;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  z-index: 1000;
+  perspective: 2000px;
 }
 
-.rulebook-content {
-  background: #fdfdfd;
-  width: 90%;
-  max-height: 90%;
-  overflow-y: auto;
+.book {
+  width: 95%;
+  height: 55%;
+  display: flex;
+  transform-style: preserve-3d;
+  transform: rotateY(-90deg);
+  transition: transform 0.5s ease-in-out;
+  background: #f8f5f0;
   border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-  animation: fadeIn 0.2s ease-in-out;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.page {
+  flex: 1;
+  padding: 40px 10px 10px 10px;
+  background: white;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.page h3{
+  font-size: 12px;
+  margin: 5px auto 3px auto;
+  text-align: center;
+}
+.left-page {
+  border-right: 1px solid #ccc;
+}
+
+.left-page h2{
   font-size: 14px;
 }
 
-.rulebook-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.page-content {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #333;
 }
 
-.rulebook-header h2 {
-  font-size: 18px;
-  color: #003366;
+.book.open {
+  transform: rotateY(0);
 }
 
 #close-rulebook-btn {
-  background: none;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: crimson;
+  color: white;
   border: none;
+  padding: 6px 10px;
   font-size: 18px;
   cursor: pointer;
+  border-radius: 50%;
 }
 
-.rulebook-body {
-  margin-top: 10px;
-}
-
-.rulebook-body h3 {
-  color: #004aad;
-  margin-top: 15px;
-}
-
-.rulebook-body ul {
-  padding-left: 20px;
-}
-
-.rulebook-body ul li {
-  margin-bottom: 5px;
-}
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(30px); }
@@ -930,3 +989,125 @@ html, body{
   transition: width 0.5s ease, background-color 0.5s ease;
 } */
 
+/* PASSERBY SECTION */
+.passer-by-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 9999;
+  visibility: visible;
+  top: 56%;
+  animation: bounceUpDown 0.5s ease-in-out infinite;
+}
+@keyframes bounceUpDown{
+  0%{
+    transform: translateY(0);
+  }
+  50%{
+    transform: translateY(5px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+}
+
+/* Group containers */
+.image-grp-1,
+.image-grp-2,
+.image-grp-3 {
+  position: relative;
+  width: 100%;
+  height: 33.33%; /* Each group gets a third of the height */
+}
+
+/* Common passerby image styles */
+.image-grp-1 img,
+.image-grp-2 img,
+.image-grp-3 img {
+  position: absolute;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: 10;
+  opacity: 0;
+}
+
+.image-grp-1 img{
+  top: 0;
+}
+.image-grp-2 img{
+  top: -90%;
+}
+
+/* GROUP 1 - Foreground (closer) */
+.image-grp-1-img-1 {
+  width: 480px;
+  transform: scaleX(-1);
+  animation: walkRight 8s linear infinite;
+  animation-delay: 0s;
+}
+.image-grp-1-img-2 {
+  width: 460px;
+  animation: walkLeft 9s linear infinite;
+  animation-delay: 15s;
+}
+.image-grp-1-img-3 {
+  width: 440px;
+  animation: walkRight 10s linear infinite;
+  animation-delay: 5s;
+}
+
+/* GROUP 2 - Midground */
+.image-grp-2-img-1 {
+  width: 390px;
+  animation: walkLeft 24s linear infinite;
+}
+.image-grp-2-img-2 {
+  width: 370px;
+  animation: walkRight 16s linear infinite;
+}
+.image-grp-2-img-3 {
+  width: 360px;
+  animation: walkLeft 7s linear infinite;
+  animation-delay: 5s;
+}
+
+/* GROUP 3 - Background (smaller and slower) 
+.image-grp-3-img-1 {
+  width: 240px;
+  animation: walkRight 22s linear infinite;
+}
+.image-grp-3-img-2 {
+  width: 220px;
+  transform: scaleX(-1);
+  animation: walkLeft 25s linear infinite;
+}
+.image-grp-3-img-3 {
+  width: 200px;
+  animation: walkRight 28s linear infinite;
+}*/
+
+/* Animation keyframes */
+@keyframes walkRight {
+  0% {
+    transform: translateX(-120%) scaleX(-1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120%) scaleX(-1);
+    opacity: 1;
+  }
+}
+@keyframes walkLeft {
+  0% {
+    transform: translateX(120%) scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-120%) scaleX(1);
+    opacity: 1;
+  }
+}

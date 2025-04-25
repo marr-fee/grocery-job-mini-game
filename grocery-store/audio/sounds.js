@@ -25,6 +25,12 @@ levelCompleteSound.volume = 0.6;
 levelCompleteSound.preload = "auto";
 levelCompleteSound.load();
 
+export const streetSound = new Audio('assets/sounds/street-ambience.mp3');
+streetSound.loop = true;
+streetSound.volume = 0.3;
+streetSound.preload = "auto";
+streetSound.load();
+
 export const confirmPurchaseSound = new Audio('assets/sounds/confirm-purchase-sound.mp3');
 confirmPurchaseSound.volume = 0.6;
 confirmPurchaseSound.preload = "auto";
@@ -45,3 +51,9 @@ bgm.loop = true;
 bgm.volume = 0.2;
 bgm.preload = "auto";
 bgm.load();
+
+export const mainBgm = new Audio('assets/sounds/main-sound.mp3');
+mainBgm.loop = true;
+mainBgm.volume = 0.2;
+mainBgm.preload = "auto";
+mainBgm.load();

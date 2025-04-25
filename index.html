@@ -15,24 +15,58 @@
     <!-- GROCERY STORE JOB -->
 
     <!-- Intro Wrapper -->
-    <div id="intro-1" class="intro-screen">
-      <h1 class="intro-title">MARRFEE TECH</h1>
-    </div>
-
-    <div id="intro-2" class="intro-screen hidden">
-      <p class="intro-note">
-        This is just a demo version.<br />More features will be added in future
-        updates.
-      </p>
+    <div id="intro-container" class="intro-screen">
+      <div class="first-intro">
+        <h1 class="intro-title">MARRFEE TECH</h1>
+      </div>
+      <div id="intro-2" class="second-intro">
+        <p class="intro-note">
+          This is just a demo version.<br />More features will be added in
+          future updates.
+        </p>
+        <button id="play-game-btn">Play Game</button>
+      </div>
     </div>
 
     <div class="grocery-store-wrapper">
+      <!-- PASSER BY VIEW -->
+      <div class="passer-by-wrapper">
+        <div class="image-grp-1">
+          <img
+            src="assets/images/passerby-male-removebg-preview.png"
+            alt="passer by"
+            class="image-grp-1-img-1"
+          />
+
+          <img
+            src="assets/images/passerby-male-removebg-preview.png"
+            alt="passer by"
+            class="image-grp-1-img-3"
+          />
+        </div>
+        <div class="image-grp-2">
+          <img
+            src="assets/images/passerby-male-removebg-preview.png"
+            alt="passer by"
+            class="image-grp-2-img-1"
+          />
+          <img
+            src="assets/images/passerby-male-removebg-preview.png"
+            alt="passer by"
+            class="image-grp-2-img-2"
+          />
+
+          />
+        </div>
+        <div class="image-grp-3"></div>
+      </div>
+
       <div class="grocery-sm-building" id="grocery-build">
         <div class="supermarket-name">
           <h3>MARRFEE</h3>
           <p>SUPERMARKET</p>
         </div>
-        <div class="day-display">DAY <span id="days">1</span></div>
+        <div class="day-display">DAY <span id="days"> 1</span></div>
         <div class="account-bal">
           Account&nbsp;Balance: <span id="account-balns-span">$50</span>
         </div>
@@ -91,7 +125,7 @@
                     </p>
                     <p>Items Bagged: <span id="items-bagged">0</span></p>
                     <p>
-                      High Score (Items Bagged):
+                      High Score (Items Bagged/hr):
                       <span id="high-score">0</span>
                     </p>
                   </div>
@@ -173,71 +207,57 @@
             </div>
 
             <!-- Rulebook Modal -->
-            <div id="rulebook-modal" class="hidden">
-              <div class="rulebook-content">
-                <div class="rulebook-header">
-                  <h2>📘 Grocery Job Rulebook</h2>
-                  <button id="close-rulebook-btn">✖</button>
+            <div id="rulebook-modal" class="rulebook-modal">
+              <div class="book open">
+                <div class="page left-page">
+                  <div class="page-content">
+                    <!-- Left Page Content -->
+                    <h2>📘&nbsp;Grocery&nbsp;Job&nbsp;Rulebook</h2>
+                    <h3>Objective</h3>
+                    <p>
+                      Serve customers by scanning groceries and processing
+                      payments accurately and efficiently.
+                    </p>
+
+                    <h3>Gameplay Rules</h3>
+                    <ul>
+                      <li>🧾 Scan all items before the customer gets upset.</li>
+                      <li>
+                        💵 If payment method is <strong>Cash</strong>, input
+                        amount, calculate and give change.
+                      </li>
+                      <li>
+                        📲 If <strong>Card</strong>, just confirm purchase.
+                      </li>
+                      <li>💰 The faster you are, the higher your tip!</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="rulebook-body">
-                  <h3>Objective</h3>
-                  <p>
-                    Serve customers by scanning groceries and processing
-                    payments accurately and efficiently.
-                  </p>
+                <div class="page right-page">
+                  <div class="page-content">
+                    <!-- Right Page Content -->
+                    <h3>Shift Management</h3>
+                    <ul>
+                      <li>
+                        ⏰ You have limited time to serve a fixed number of
+                        customers.
+                      </li>
+                      <li>🧑‍💼 Serve all customers before time runs out.</li>
+                      <li>📊 Earn salary and tips, avoid grocery losses!</li>
+                    </ul>
 
-                  <h3>Gameplay Rules</h3>
-                  <ul>
-                    <li>🧾 Scan all items before the customer gets upset.</li>
-                    <li>
-                      💵 If payment method is <strong>Cash</strong>, you are to
-                      manually input the customer's total purchace and the
-                      customer's cash amount, click the calculate change button
-                      and return the correct change by clicking the give change
-                      button and finally confirm purchace.
-                    </li>
-                    <li>
-                      📲 Otherwise if payment method is <strong>Card</strong>,
-                      go ahead and click confirm purchace button.
-                    </li>
-                    <li>
-                      💰The faster you perform, the happier the customer and the
-                      higher your chances of getting a tip from the customer.
-                    </li>
-                  </ul>
-
-                  <h3>Shift Management</h3>
-                  <ul>
-                    <li>
-                      ⏰ You have a limited time to serve a fixed number of
-                      customers.
-                    </li>
-                    <li>
-                      🧑‍💼 Serve all customers before time runs out to earn job
-                      security.
-                    </li>
-                    <li>
-                      📊 Earn salary and tips, but be mindful of grocery losses!
-                    </li>
-                  </ul>
-
-                  <h3>Firing & Salary</h3>
-                  <ul>
-                    <li>😠 Unhappy customers reduce your job security.</li>
-                    <li>
-                      🔥 If job security hits 0, you're fired and must pay back
-                      10% of store losses.
-                    </li>
-                    <li>
-                      📈 Job Security reaching 85 means increased salary for the
-                      next month.
-                    </li>
-                    <li>
-                      📅 At the end of each in-game month (30 days), your salary
-                      is deposited.
-                    </li>
-                  </ul>
+                    <h3>Firing & Salary</h3>
+                    <ul>
+                      <li>😠 Unhappy customers reduce job security.</li>
+                      <li>
+                        🔥 0% job security = you're fired + pay 10% of losses.
+                      </li>
+                      <li>📈 85% job security = salary increase next month.</li>
+                      <li>📅 Salary is paid monthly (in-game time).</li>
+                    </ul>
+                  </div>
                 </div>
+                <button id="close-rulebook-btn">✖</button>
               </div>
             </div>
           </div>

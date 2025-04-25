@@ -4,19 +4,25 @@
 import * as App from "./index.js";
 
 window.addEventListener('load', () => {
-  const intro1 = document.getElementById('intro-1');
+  const introcontainer = document.getElementById('intro-container');
   const intro2 = document.getElementById('intro-2');
+  const intro1 = document.querySelector('.first-intro');
   const game = document.querySelector('.grocery-store-wrapper');
+  const playGameBtn = document.getElementById('play-game-btn');
 
   // Show second intro after first
   setTimeout(() => {
     intro1.style.display = 'none';
-    intro2.classList.remove('hidden');
+    intro2.style.display = 'flex';
   }, 4000); // after 4s
 
-  // Show game after second
-  setTimeout(() => {
-    intro2.style.display = 'none';
+  playGameBtn.addEventListener('click', () => {
+    introcontainer.style.display = 'none';
     game.style.display = 'flex';
-  }, 5800); // after 4s of intro 2 (total 7s)
+    App.passerByWrapper.style.visibility = 'visible';
+    App.mainBgm.currentTime = 0;
+    App.mainBgm.play();
+    App.streetSound.currentTime = 0;
+    App.streetSound.play();
+  });
 });

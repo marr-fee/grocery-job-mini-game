@@ -1,10 +1,12 @@
 import { bgm } from "./audio/sounds.js";
-import { endShiftSummary, popupMessageElem, endShiftPopup, groceryBuilding, cashierJobCntr, paymentMethodDialog } from "./domConstants.js";
+import { endShiftSummary, popupMessageElem, endShiftPopup, groceryBuilding, cashierJobCntr, paymentMethodDialog, firedSummary } from "./domConstants.js";
+import { gameState } from "./gameState.js";
 
 
 
 export  function closeEndShiftPopUp(){
     endShiftSummary.innerHTML = '';
+    firedSummary.innerHTML = '';
     endShiftPopup.style.display = 'none';
     popupMessageElem.style.display = 'none';
     groceryBuilding.style.display = 'flex';

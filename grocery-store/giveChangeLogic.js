@@ -28,7 +28,7 @@ import { updateScores } from "./scoreUpdate.js";
     }
 
     if (Math.abs(enteredPaid - gameState.customerCash) > 0.01) {
-      showPopupMessage(`Customer gave $${gameState.customerCash}. You entered $${enteredPaid}.`);
+      showPopupMessage(`Customer gave $${gameState.customerCash}. You entered $${enteredPaid}.`, true);
       errorSound.currentTime = 0;
       errorSound.play();
       return;
@@ -51,6 +51,8 @@ import { updateScores } from "./scoreUpdate.js";
     changeOutput.textContent = change.toFixed(2);
     gameState.changeGiven = true;
     gameState.jobSecurity += 1;
+    console.log(`Job security: ${gameState.jobSecurity}`);
+    
     
     getsTip();
     showPopupMessage(`Change given: $${change.toFixed(2)}`, false);

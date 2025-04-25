@@ -24,4 +24,31 @@ export function updateScores() {
     localStorage.setItem("highScore", gameState.highScore);
     highScoreDisplay.textContent = gameState.highScore;
   }
+
+    if( gameState.unhappyCustomer){
+    gameState.jobSecurity -= 1;
+    console.log(`Job security: ${gameState.jobSecurity}`);
+  }
 }
+
+export function calculateItemsBaggedPerHour() {
+  const hoursWorked = (480 - gameState.timeLeft) / 60;
+  const rawScore = hoursWorked > 0 ? gameState.itemsBagged / hoursWorked : 0;
+  const score = Math.floor(rawScore); // ⬅️ Make it whole
+
+  const highScore = parseInt(localStorage.getItem("highScorePerHour")) || 0;
+  if (score > highScore) {
+    localStorage.setItem("highScorePerHour", score);
+    gameState.highScore = score;
+  } else {
+    gameState.highScore = highScore;
+  }
+
+  updateHighScoreDisplay();
+  return score;
+}
+
+export function updateHighScoreDisplay() {
+  highScoreDisplay.textContent = gameState.highScore;
+}
+

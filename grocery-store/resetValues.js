@@ -23,7 +23,10 @@ export function resetValues() {
     onBreak: false,
     shiftEnded: false,
     currentCustomerImg: null,
-    timeLeft: 480 // Reset the clock to full shift
+    timeLeft: 480, // Reset the clock to full shift
+    newGame: false,
+    jobSecurityDeducted: false,
+
   });
   
   gameState.accountBalance += gameState.dailyTips;
@@ -39,10 +42,14 @@ export function resetValues() {
 
 
 export function prepareNextShift() {
-  gameState.days += 1;
+  if (gameState.newGame){
+    gameState.days += 0;
+  } else{
+    gameState.days += 1;
+  }
   resetValues(); // reset core game state
-  // Update UI elements
+    // Update UI elements
   updateScores();
-  // Optional: console.log to debug
-  // console.log("✔️ Shift prepped and reset.");
+    // Optional: console.log to debug
+    // console.log("✔️ Shift prepped and reset.");
 }

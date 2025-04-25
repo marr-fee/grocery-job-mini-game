@@ -1,5 +1,3 @@
-
-
 export * from "./grocery-store/gameState.js";
 export * from "./grocery-store/customerSpawn.js";
 export * from "./grocery-store/startUi.js";
@@ -21,3 +19,4 @@ export * from "./grocery-store/timeLogic.js";
 export * from "./grocery-store/startShift.js";
 export * from "./grocery-store/resetValues.js";
 export * from "./grocery-store/rule-book.js";
+

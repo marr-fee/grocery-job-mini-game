@@ -24,7 +24,6 @@ document.getElementById('confirm-purchase').addEventListener('click', () => {
     showPopupMessage("Customer upset! You didn’t give them change.", true);
     errorSound.currentTime = 0;
     errorSound.play();
-    gameState.jobSecurity -= 1;
     gameState.unhappyCustomer = true;
     updateScores(); 
     return;

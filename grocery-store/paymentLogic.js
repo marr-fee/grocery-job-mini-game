@@ -3,8 +3,10 @@ import { gameState } from "./gameState.js";
 import { paymentMethodText, paymentMethodDialog } from "./domConstants.js";
 
 export function showPaymentMethodDialog() {
-  // Corrected probability: 60% card, 40% cash
+  // Corrected probability: 50% card, 50% cash
   gameState.isCashPayment = Math.random() < 0.5 ? true : false;
+
+  
   gameState.changeGiven = false;
   
   

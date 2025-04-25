@@ -18,7 +18,6 @@ document.getElementById('cancel-purchase').addEventListener('click', () => {
       showPopupMessage('Customer left unhappy...', true);
       errorSound.currentTime = 0;
       errorSound.play();
-      gameState.jobSecurity -= 1;
       gameState.unhappyCustomer = true;
       updateScores();
     }

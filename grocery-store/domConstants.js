@@ -34,5 +34,7 @@ export const playAgainBtn = document.getElementById('reset-game');
 export const openRuleBookBtn = document.getElementById('open-rulebook-btn');
 export const closeRuleBookBtn = document.getElementById('close-rulebook-btn');
 export const ruleBook = document.getElementById('rulebook-modal');
+export const book = document.querySelector(".book");
 export const clockTimer = document.getElementById("clock-timer");
+export const passerByWrapper = document.querySelector('.passer-by-wrapper');
 // export const patienceFill = document.getElementById("patience-fill");
