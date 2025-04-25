@@ -11,10 +11,10 @@ window.addEventListener('load', () => {
   const playGameBtn = document.getElementById('play-game-btn');
 
   // Show second intro after first
-  intro1.addEventListener("animationend", () => {
-    intro1.style.display = "none";
-    intro2.style.display = "flex";
-  });
+  setTimeout(() => {
+    intro1.style.display = 'none';
+    intro2.style.display = 'flex';
+  }, 500); 
 
   playGameBtn.addEventListener('click', () => {
     introcontainer.style.display = 'none';
