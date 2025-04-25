@@ -30,7 +30,9 @@ document.getElementById('confirm-purchase').addEventListener('click', () => {
   }
 
   if (!gameState.isCashPayment && gameState.unhappyCustomer === false) {
+    gameState.jobSecurity += 1;
     getsTip();
+
   }
   
   paymentMethodDialog.style.display = 'none';
@@ -39,7 +41,7 @@ document.getElementById('confirm-purchase').addEventListener('click', () => {
 
   // Increase job security if customer patience is above 0
   if (gameState.currentCustomerImg && gameState.currentCustomerImg.patience.current() > 0 || !gameState.isCashPayment && gameState.unhappyCustomer === false) {
-    gameState.jobSecurity += 1;
+    
     gameState.unhappyCustomer = false;
     updateScores();
   }
